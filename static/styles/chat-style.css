@@ -1,0 +1,195 @@
+/* --- Botão Flutuante --- */
+.floating-chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #00d4ff, #00ff88); /* Cores do seu tema */
+  color: #000;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.5); /* Sombra do seu tema */
+  z-index: 1000; /* Garante que fique acima de outros elementos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease, transform 0.2s ease; /* Transições suaves */
+}
+
+.floating-chat-button:hover {
+  transform: scale(1.1) translateY(-3px); /* Efeito de hover */
+  box-shadow: 0 6px 25px rgba(0, 212, 255, 0.7);
+}
+
+/* --- Janela do Chat --- */
+.chat-window {
+  position: fixed;
+  bottom: 100px; /* Distância do botão */
+  right: 20px;
+  width: 400px;
+  height: 500px;
+  background: rgba(35, 15, 60, 0.5); /* Fundo semi-transparente */
+  backdrop-filter: blur(15px); /* Efeito de desfoque */
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(150, 70, 255, 0.3);
+  border: 1px solid rgba(150, 70, 255, 0.3);
+  z-index: 999; /* Abaixo do botão, mas acima do conteúdo */
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.chat-window.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* --- Cabeçalho do Chat --- */
+.chat-header {
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 15px 15px 0 0; /* Arredondar apenas o topo */
+}
+
+.chat-header span {
+  font-weight: bold;
+  color: #00d4ff;
+  font-size: 1.2rem;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.close-button:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Área de Mensagens --- */
+.chat-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto; /* Permite rolagem se as mensagens ultrapassarem a altura */
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Espaço entre as mensagens */
+}
+
+/* --- Estilo das Mensagens --- */
+.message {
+  max-width: 80%;
+  padding: 10px 15px;
+  border-radius: 18px;
+  position: relative;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.message.received {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom-left-radius: 5px;
+  color: #e0e0e0;
+}
+
+.message.sent {
+  align-self: flex-end;
+  background: linear-gradient(45deg, #00d4ff, #00ff88);
+  color: #000;
+  font-weight: 500;
+  border-bottom-right-radius: 5px;
+}
+
+.message p {
+  margin: 0;
+  word-wrap: break-word; /* Quebra palavras longas */
+}
+
+.timestamp {
+  font-size: 0.7rem;
+  color: #aaa;
+  display: block;
+  text-align: right;
+  margin-top: 5px;
+}
+
+/* --- Área de Entrada --- */
+.chat-input-area {
+  display: flex;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0 0 15px 15px; /* Arredondar apenas a base */
+}
+
+#chat-input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#chat-input:focus {
+  border-color: #00d4ff;
+}
+
+.send-button {
+  margin-left: 10px;
+  padding: 8px 15px;
+  background: linear-gradient(45deg, #00d4ff, #00ff88);
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.send-button:hover {
+  transform: scale(1.05);
+}
+
+/* --- Responsividade para Mobile --- */
+@media (max-width: 768px) {
+  .chat-window {
+    width: calc(100% - 40px); /* Quase toda a largura da tela */
+    height: 70vh; /* 70% da altura da viewport */
+    bottom: 90px; /* Ajustar posição para não sobrepor o botão */
+    right: 20px;
+    left: 20px; /* Centralizar horizontalmente */
+  }
+}

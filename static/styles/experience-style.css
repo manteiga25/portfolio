@@ -1,0 +1,91 @@
+.experience {
+            padding: 5rem 0;
+            background: transparent;
+        }
+
+        .experience-card {
+        /*    background: linear-gradient(145deg, #1a1a1a, #262626); */
+        background: rgba(35, 15, 60, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(150, 70, 255, 0.2);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+              margin: 0 auto 3rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+        }
+
+        .experience-title {
+            font-size: 1.8rem;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .experience-company {
+            font-size: 1.2rem;
+            color: #00ff88;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .experience-description {
+            color: #b0b0b0;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .experience-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .experience-skill {
+            background: linear-gradient(45deg, #00d4ff20, #00ff8820);
+            color: #00ff88;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #00ff88;
+            transition: transform 0.3s ease;
+        }
+
+        .experience-skill:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 32px rgba(5, 223, 23, 0.26),
+                0 0 20px rgba(70, 230, 30, 0.068);
+        }
+
+        .image-skill {
+            border-radius: 5%;
+            transition: transform 0.3s ease;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(19, 72, 245, 0.4);
+        }
+
+        .image-skill:hover {
+            border-radius: 5%;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(19, 72, 245, 0.785);
+                transform: translateY(-20px);
+        }

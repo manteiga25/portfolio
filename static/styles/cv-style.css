@@ -1,0 +1,232 @@
+.cv-section {
+            padding: 5rem 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .cv-container {
+             display: grid; /* Use flexbox */
+            background: rgba(35, 15, 60, 0.212);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(150, 70, 255, 0.2);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid #130324;
+              margin: 0 auto 3rem auto;
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .bot {
+            height: 90%;
+            width: 95%;
+            min-height: 300px;
+        }
+
+        .cv-text-and-bot {
+            flex: 1; /* Ocupa o espaço disponível */
+            display: flex;
+            flex-direction: column;
+            gap: 2rem; /* Espaço entre o texto e o bot */
+        }
+
+        .cv-text {
+
+            color: #c2c2c2;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            padding: 2rem;
+            font-family: Arial, Helvetica, sans-serif, monospace;
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        .cv-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+        }
+
+        .cv-preview {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .cv-frame-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding-top: 140%; /* Proporção 4:5 */
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .cv-frame-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .cv-frame-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .cv-actions {
+            display: flex;
+            gap: 1.5rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .cv-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .cv-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .cv-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Modal para visualização em tela cheia */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #00d4ff;
+            color: #000;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #00ff88;
+            transform: rotate(90deg);
+        }
+
+@media (max-width: 992px) {
+    .cv-container {
+        flex-direction: column; /* Empilha os elementos verticalmente */
+        padding: 1.5rem; /* Ajusta o padding */
+    }
+
+    .cv-preview {
+       /* order: 1; /* Move a pré-visualização para cima na pilha */
+        width: 100%; /* Garante que ocupe a largura total */
+    }
+
+    .cv-text {
+        font-size: 1.1rem;
+        padding: 1.5rem;
+    }
+
+    /* O aspect-ratio ou padding-top no .cv-frame-container ainda se aplica,
+       mas agora está dentro de um contêiner 100% de largura */
+    .cv-frame-container {
+        /* max-width: 600px; Removido - deixar 100% */
+        /* padding-top: 141.4%; Proporção para mobile - mantido via aspect-ratio ou padding-top */
+        width: 100%; /* Garante que ocupe a largura do contêiner pai */
+    }
+
+    .cv-actions {
+        flex-direction: column;
+        align-items: center;
+        width: 100%; /* Garante que ocupe a largura total */
+    }
+
+    .cv-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .cv-container {
+        padding: 1rem; /* Ajusta o padding */
+        gap: 1.5rem; /* Ajusta o gap */
+    }
+
+    .cv-text {
+        padding: 1rem;
+        font-size: 1rem; /* Ajusta o tamanho da fonte */
+    }
+
+}

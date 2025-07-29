@@ -1,0 +1,342 @@
+.education {
+            padding: 5rem 0;
+            background: transparent;
+        }
+
+        /* New container for the education cards grid */
+.education-grid {
+    display: grid; /* Use flexbox */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem; /* Space between cards */
+    justify-content: center; /* Center cards horizontally if there's extra space */
+    /* Optional: align-items: stretch; */ /* Makes cards stretch to match the tallest in the row */
+}
+
+/* Styles for individual education cards */
+.education-card {
+    /* Remove max-width and margin: 0 auto as they conflict with flexbox */
+    flex: 1 1 400px; /* Flex-grow, Flex-shrink, Flex-basis. Allows cards to grow/shrink but have a base width of 400px */
+    background: rgba(35, 15, 60, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(150, 70, 255, 0.2);
+    padding: 2rem; /* Adjusted padding slightly */
+    border-radius: 12px;
+    border: 1px solid #333;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box; /* Include padding/border in width calculation */
+}
+
+/* Optional: Add a subtle hover effect */
+.education-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(150, 70, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+        /*.education-card {
+            /*background: linear-gradient(145deg, #1a1a1a, #262626); */
+          /*  background: rgba(35, 15, 60, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(150, 70, 255, 0.2);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            text-align: center;
+            max-width: 100%;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        } */
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+        }
+
+        .education-title {
+            font-size: 1.8rem;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .education-school {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #e0e0e0;
+        }
+
+        .education-type {
+    color: #aaa; /* Slightly lighter than #888 for better readability */
+    font-style: italic;
+}
+
+.btn {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 15px 32px;
+            background: linear-gradient(45deg, #9a4cff, #bd6cff);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(150, 70, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(150, 70, 255, 0.6);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+/* --- Responsive Design --- */
+/* Adjusts layout for smaller screens */
+@media (max-width: 768px) {
+    .education-grid {
+        flex-direction: column; /* Stack cards vertically */
+        align-items: center; /* Center cards if container is wider */
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1.5rem; /* Reduce gap on smaller screens */
+    }
+
+    .education-card {
+        flex: 1 1 90%; /* Allow cards to take most of the container width */
+        /* You can adjust padding further if needed */
+    }
+
+     .education-title {
+        font-size: 1.5rem; /* Slightly smaller title */
+    }
+}
+
+/* Collapse Widget Styles */
+.collapse-widget {
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+}
+
+.collapse-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    color: #00d4ff;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.collapse-btn:hover {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: rgba(0, 212, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.collapse-icon {
+    transition: transform 0.3s ease;
+    font-size: 1rem;
+}
+
+.collapse-btn.active .collapse-icon {
+    transform: rotate(180deg);
+}
+
+.collapse-btn-courses {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    color: #00d4ff;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.collapse-btn-courses:hover {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: rgba(0, 212, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.collapse-btn-courses.active .collapse-icon {
+    transform: rotate(180deg);
+}
+
+.collapse-content {
+    max-height: 0;
+    margin-top: 20px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    border-radius: 0 0 8px 8px;
+}
+
+.collapse-content.active {
+    padding: 1.5rem;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-top: none;
+}
+
+.item-title {
+    font-size: x-large;
+    color: #c2c2c2;
+}
+
+.item {
+    align-items: center; /* Centraliza verticalmente */
+}
+
+/* Books List Styles */
+.book-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: center; /* Centraliza verticalmente */
+}
+
+.text-book {
+    display: block;
+}
+
+.book {
+    max-width: 100%; /* Garante que a imagem não ultrapasse */
+}
+
+.book img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centraliza horizontalmente */
+    max-width: 200px; /* Limita o tamanho máximo */
+    border-radius: 2%;
+}
+
+.books-list, .achievements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.book-item, .achievement-item {
+    background: rgb(255, 255, 255, 0.05);
+    display: grid; /* Use flexbox */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    grid-template-columns: repeat(2, 1fr);
+
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 3px solid #00d4ff;
+    transition: all 0.3s ease;
+}
+
+.book-item:hover, .achievement-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.item, .achievement-item {
+    background: rgb(255, 255, 255, 0.05);
+    
+
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 3px solid #00d4ff;
+    transition: all 0.3s ease;
+}
+
+.item:hover, .achievement-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.book-item h4, .achievement-item h4 {
+    color: #00ff88;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.book-author {
+    color: #aaa;
+    font-style: italic;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.book-description, .achievement-item p {
+    color: #c2c2c2;
+    line-height: 1.6;
+    font-size: 1.4rem;
+}
+
+/* Responsive adjustments for collapse widget */
+@media (max-width: 768px) {
+    .collapse-btn {
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+    }
+    
+    .collapse-content.active {
+        padding: 1rem;
+    }
+    
+    .book-item, .achievement-item {
+        padding: 1rem;
+        text-align: center;
+        grid-template-columns: 1fr;
+    }
+
+    .book-item, .achievement-item .book {
+        margin-top: 20px;
+    }
+    
+    .book-item h4, .achievement-item h4 {
+        font-size: 1.1rem;
+    }
+}

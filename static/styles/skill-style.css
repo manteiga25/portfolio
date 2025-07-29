@@ -1,0 +1,85 @@
+/* Skills Section */
+        .skills {
+            padding: 5rem 0;
+            background: transparent;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.5), rgba(38, 38, 38, 0.2));
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(150, 70, 255, 0.2);
+            border: 1px solid rgba(45, 65, 245, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-category:hover::before {
+            opacity: 1;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-8px);
+            border-color: #00d4ff;
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.8rem 0;
+            position: relative;
+            padding-left: 2rem;
+            color: #b0b0b0;
+            transition: color 0.3s ease;
+        }
+
+        .skill-list li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-size: 0.8rem;
+        }
+
+        .skill-list li:hover {
+            color: #e0e0e0;
+        }
