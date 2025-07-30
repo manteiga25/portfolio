@@ -19,7 +19,7 @@ app.config.update(
     SESSION_COOKIE_SAMESITE='Lax'
 )
 
-#Assistant = model(data.question, data.answare)
+Assistant = model(data.question, data.answare)
 
 @app.route('/')
 def index():
