@@ -75,6 +75,7 @@
         }
 
         .image-skill {
+            margin-left: 10px;
             border-radius: 5%;
             transition: transform 0.3s ease;
             box-shadow: 
@@ -89,3 +90,11 @@
                 0 0 20px rgba(19, 72, 245, 0.785);
                 transform: translateY(-20px);
         }
+
+@media (max-width: 768px) {
+    .image-skill {
+        margin-top: 10px;
+        height: 100%;
+        width: 100%;
+    }
+}

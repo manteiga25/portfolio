@@ -39,9 +39,6 @@ function changeLanguage(lang) {
         // Create particles continuously
         setInterval(createParticle, 200);
 
-       // const cv = document.getElementById('CV');
-       // cv.onclick(function)
-
 const en_text = [
     "I'm a Full Stack Developer",
     "I'm an Informatic Technician",

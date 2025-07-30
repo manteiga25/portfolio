@@ -2,7 +2,7 @@ from flask import Flask, make_response, request, render_template, jsonify, redir
 from Assistant.message import Message
 from datetime import datetime
 from Assistant.model import model
-import ast
+from ast import literal_eval
 from os import environ
 from static.data import data
 from dotenv import load_dotenv
@@ -19,31 +19,13 @@ app.config.update(
     SESSION_COOKIE_SAMESITE='Lax'
 )
 
-base = [
-            "Qual é a capital da França?",
-            "Quem escreveu 'Dom Quixote'?",
-            "Qual o país que tem a forma de uma bota?",
-            "Qual é a cidade luz?",
-            "Qual o nome do autor de 'Cem Anos de Solidão'?"
-           # "Quais projetos com IA fez?",
-           # ""
-        ]
-response = [
-        "A capital da França é Paris.",
-        "Miguel de Cervantes escreveu 'Dom Quixote'.",
-        "A Itália é o país que tem a forma de uma bota.",
-        "Paris é conhecida como a Cidade Luz.",
-        "Gabriel García Márquez é o autor de 'Cem Anos de Solidão'."
-        ]
-
-Assistant = model(data.question, data.answare)
+#Assistant = model(data.question, data.answare)
 
 @app.route('/')
 def index():
     message_list = []
     consent_cookie = request.cookies.get('user_consented', 'false')
     language = request.cookies.get('language', 'en')
-    print(consent_cookie)
     if consent_cookie == 'true':
         message_list = request_messages()
 
@@ -51,26 +33,20 @@ def index():
 
 @app.route('/accept_cookies', methods=['POST'])
 def accept_cookies():
-    print("Rota /accept_cookies acessada")  # Log no servidor
     resp = make_response(jsonify({
         'success': True,
         'message': 'Cookies aceitos com sucesso'
     }))
-    # Define o cookie de consentimento com um longo tempo de vida
     resp.set_cookie('user_consented', 'true', max_age=365 * 24 * 60 * 60, httponly=True) # Válido por 1 ano
     return resp
-  #  return render_template('en/index.html', user_consented=True, messages=[])
 
 @app.route('/reject_cookies', methods=['POST'])
 def reject_cookies():
-    print("Rota /accept_cookies ew")  # Log no servidor
     resp = make_response(jsonify({
         'success': True,
         'message': 'Cookies aceitos com sucesso'
     }))
     resp.set_cookie('user_consented', 'false', max_age=365 * 24 * 60 * 60, httponly=True)
-    # Aqui, você também limparia quaisquer cookies de tracking ou outros que dependem do consentimento
-    # Ex: resp.delete_cookie('analytics_id')
     return resp
 
 
@@ -117,24 +93,9 @@ def get_response():
         change_cookie(esp, "user_message", Message(user_message, user_time, True).toDict())
         change_cookie(esp, "assistant_message", Message(assistant_response, datetime.now().isoformat(), False).toDict())
 
-        #change_cookie(esp, "user_message", "ehfuh")
-
-
-
-        # Retornar resposta em formato JSON
         return esp
-     #   return jsonify({
-      #      'success': True,
-       #     'response': response_text,
-        #    'timestamp': datetime.now().isoformat()
-        #})
     except Exception as e:
-        print(str(e))
         return make_response({"success": False, "response": str(e), 'timestamp': datetime.now().isoformat()}), 500
-    #    return jsonify({
-     #       'success': False,
-      #      'error': str(e)
-       # }), 500
 
 def change_cookie(resp, cookie, value):
     data = request.cookies.get(cookie)
@@ -143,17 +104,8 @@ def change_cookie(resp, cookie, value):
         data_list.append(value)
     else:
         data_list = [value]
-        print("dfgfd " + str(value))
-
-    print(data_list)
 
     resp.set_cookie(cookie, str(data_list),  max_age=365 * 24 * 60 * 60, httponly=True)
- #   data = request.cookies.get(cookie, [])
-#    if len(data) > 0:
- #       data.append(value)
-  #      resp.set_cookie(cookie, data, max_age=60 * 60 * 24 * 365)
-   # else:
-    #    resp.set_cookie(cookie, [value], max_age=60 * 60 * 24 * 365)
 
 def request_messages():
     message_list = []
@@ -169,7 +121,7 @@ def request_messages():
     return message_list
 
 def str_to_list(text):
-    return ast.literal_eval(text)
+    return literal_eval(text)
 
 if __name__ == '__main__':
     app.run(debug=True)
