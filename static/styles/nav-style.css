@@ -18,22 +18,28 @@
         }
 
         .nav-menu a {
-            color: #e0e0e0;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
+  position: relative;      /* pra posicionar o ::after em relação ao link */
+  color: #e0e0e0;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  transition: color 0.3s ease, transform 0.3s ease;
 
-        .nav-menu a:active {
-            background: linear-gradient(45deg, #00d4ff20, #00ff8820);
-        }
+}
+
+/* 2) Definição do pseudo-elemento da barra */
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 3px;             /* espessura da barra */
+  background-color: #00d4ff;
+  transition: width 0.3s ease;
+  border-radius: 2px 2px 0 0; /* opcional: cantos arredondados em cima */
+}
 
         .nav-menu a:hover {
-            background: linear-gradient(45deg, #00d4ff20, #00ff8820);
-            border: 1px solid #00d4ff;
             color: #00d4ff;
             transform: translateY(-2px);
         }
@@ -58,4 +64,52 @@
 
         .language-select .option-item {
             background: #111;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+        @media (max-width: 568px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgba(35, 15, 60, 0.8); /* Fundo semi-transparente */
+                backdrop-filter: blur(15px); /* Efeito de desfoque */
+                -webkit-backdrop-filter: blur(15px);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 1rem 0;
+            }
+
+            .nav-menu .li, .language-select {
+                margin-left: 10px;
+            }
+
+            .nav-menu a:hover {
+            background: none;
+
+                color: #00d4ff;
+                transform: translateY(-2px);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
         }

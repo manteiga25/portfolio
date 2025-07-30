@@ -7,7 +7,6 @@ from os import environ
 class model:
 
     cliente = None
-    knowledge_base = None
     response_base = None
     knowledge_embeddings = None
 
@@ -31,6 +30,7 @@ class model:
     def answer_question(self, user_question):
         try:
             question_embedding = array(self.cliente.models.embed_content(model="gemini-embedding-001", contents=[user_question], config=types.EmbedContentConfig(task_type="QUESTION_ANSWERING")).embeddings[0].values).reshape(1, -1)
+            print(len(self.knowledge_base))
             similarities = zeros((len(self.knowledge_base), 1))
             for index, embedding in enumerate(self.knowledge_embeddings):
                 similarities[index] = cosine_similarity(question_embedding, embedding.reshape(1, -1))[0, 0]

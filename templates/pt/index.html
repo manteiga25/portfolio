@@ -36,11 +36,14 @@
 
     <nav>
         <div class="container">
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul class="nav-menu">
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#projects">Projetos</a></li>
+                <li><a href="#education">Educação</a></li>
+                <li><a href="#contact">Contacto</a></li>
                <li><select class="language-select" name="language" id="languages" onchange="changeLanguage(this.value)">
                     <option class="option-item" value="pt"><a href="/language/pt">Português</a></option>
                    <option class="option-item" value="en"><a href="/language/en">English</a></option>
@@ -50,7 +53,7 @@
     </nav>
     <header>
 
-        <button id="chat-toggle" class="floating-chat-button">
+        <button id="chat-toggle" class="floating-chat-button" onclick="toggleChat()">
   💬 <!-- Você pode usar um ícone SVG ou uma biblioteca de ícones aqui -->
 </button>
 
@@ -58,7 +61,7 @@
 <div id="chat-window" class="chat-window">
   <div class="chat-header">
     <span>Chat</span>
-    <button id="close-chat" class="close-button">&times;</button>
+    <button id="close-chat" class="close-button" onclick="closeChatWindow()">&times;</button>
   </div>
   <div id="chat-messages" class="chat-messages">
     <!-- Mensagens aparecerão aqui -->
@@ -76,8 +79,8 @@
   </div>
   <div class="chat-input-area">
     <input type="text" id="chat-input" placeholder="Digite sua mensagem..." />
-      <button id="microphone-btn" class="send-button">Falar</button>
-    <button id="send-message" class="send-button">Enviar</button>
+      <button id="microphone-btn" class="send-button" onclick="capture_audio('pt-PT')">Falar</button>
+    <button id="send-message" class="send-button" onclick="sendMessage()">Enviar</button>
   </div>
 </div>
 

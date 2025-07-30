@@ -139,11 +139,11 @@ chatInput.addEventListener('keydown', function(event) {
       }
     }
 
-function capture_audio() {
+function capture_audio(language) {
     const btn = document.getElementById('microphone-btn');
     //btn.disabled = true;
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognition.lang = 'en-US'; // Set language
+    recognition.lang = language; // Set language
     recognition.interimResults = false;
 
     recognition.onresult = (event) => {

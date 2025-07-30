@@ -36,7 +36,7 @@ response = [
         "Gabriel García Márquez é o autor de 'Cem Anos de Solidão'."
         ]
 
-#Assistant = model(base, response)
+Assistant = model(data.question, data.answare)
 
 @app.route('/')
 def index():
@@ -107,6 +107,8 @@ def get_response():
 
         assistant_response = Assistant.answer_question(user_message)
 
+        print(assistant_response)
+
         if assistant_response is None:
             assistant_response = "I could to respond this question."
 
@@ -114,6 +116,10 @@ def get_response():
 
         change_cookie(esp, "user_message", Message(user_message, user_time, True).toDict())
         change_cookie(esp, "assistant_message", Message(assistant_response, datetime.now().isoformat(), False).toDict())
+
+        #change_cookie(esp, "user_message", "ehfuh")
+
+
 
         # Retornar resposta em formato JSON
         return esp
@@ -123,6 +129,7 @@ def get_response():
         #    'timestamp': datetime.now().isoformat()
         #})
     except Exception as e:
+        print(str(e))
         return make_response({"success": False, "response": str(e), 'timestamp': datetime.now().isoformat()}), 500
     #    return jsonify({
      #       'success': False,
@@ -131,8 +138,6 @@ def get_response():
 
 def change_cookie(resp, cookie, value):
     data = request.cookies.get(cookie)
-    print(len(data))
-    print(data)
     data_list = str_to_list(data)
     if data_list and len(data_list) > 0:
         data_list.append(value)

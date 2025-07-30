@@ -37,6 +37,9 @@
 
     <nav>
         <div class="container">
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul class="nav-menu">
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -79,7 +82,7 @@
   </div>
   <div class="chat-input-area">
     <input type="text" id="chat-input" placeholder="Digite sua mensagem..." />
-      <button id="microphone-btn" class="send-button" onclick="capture_audio()">Speech</button>
+      <button id="microphone-btn" class="send-button" onclick="capture_audio('en-US')">Speech</button>
     <button id="send-message" class="send-button" onclick="sendMessage()">Send</button>
   </div>
 </div>
@@ -533,9 +536,6 @@
         document.getElementById('cookie-consent-banner').style.display = 'block';
     }
     </script>
-
-<!-- Garantir que a função está definida primeiro -->
-
 
 <!-- Processar mensagens após o DOM carregar -->
 <script>
