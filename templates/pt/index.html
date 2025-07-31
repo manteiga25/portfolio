@@ -314,6 +314,7 @@ chaves para o sucesso.</p>
                         <span class="tech-tag">Embedding text</span>
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">SQLite</span>
                     </div>
                     <p class="project-description">Meu portfólio desenvolvido com html css, js e python com flask no back-end e sistema de pseudo IA que responde perguntas sobre mim.</p>
                     <a href="#" target="_blank" class="github-link">
@@ -527,6 +528,7 @@ chaves para o sucesso.</p>
                 
                 <button type="submit" class="submit-btn">Enviar mensagem</button>
             </form>
+                 <div id="status" class="status"></div>
             </div>
         </div>
     </section>
@@ -556,6 +558,7 @@ chaves para o sucesso.</p>
     <script src="{{ url_for('static', filename='script/scroll.js') }}" defer></script>
     <script src="{{ url_for('static', filename='script/chat.js') }}" defer></script>
     <script src="{{ url_for('static', filename='script/education.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='script/contact.js') }}" defer></script>
 
     <script>
     if (!{{ user_consented | tojson }}) {

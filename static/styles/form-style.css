@@ -149,6 +149,27 @@
             transform: translateY(0);
         }
 
+        .status {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .status.success {
+            background: rgba(47, 223, 90, 0.4);
+            color: #111;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .status.error {
+            background: rgba(193, 31, 31, 0.4);
+            color: #111;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {

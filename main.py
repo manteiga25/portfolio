@@ -1,7 +1,8 @@
 from flask import Flask, make_response, request, render_template, jsonify, redirect, url_for
 from Assistant.message import Message
-from datetime import datetime
+from datetime import datetime, UTC
 from Assistant.model import model
+from Database.DB import Messages, connector
 from ast import literal_eval
 from os import environ
 from static.data import data
@@ -16,8 +17,15 @@ app.secret_key = environ.get('SECRET_KEY')
 app.config.update(
     SESSION_COOKIE_SECURE=True,
     SESSION_COOKIE_HTTPONLY=True,
-    SESSION_COOKIE_SAMESITE='Lax'
+    SESSION_COOKIE_SAMESITE='Lax',
+    SQLALCHEMY_TRACK_MODIFICATIONS=False,
+    SQLALCHEMY_DATABASE_URI='sqlite:///messages.db'
 )
+
+connector.init_app(app)
+
+with app.app_context():
+    connector.create_all()
 
 Assistant = model(data.question, data.answare)
 
@@ -72,6 +80,28 @@ def to_pt():
         resp.set_cookie('language', 'pt', max_age=365 * 24 * 60 * 60, httponly=True)
 
     return resp
+
+@app.route('/send', methods=['POST'])
+def send_message():
+    try:
+        data_json = request.get_json()
+        user_name = data_json.get('name')
+        email = data_json.get('email')
+        subject = data_json.get('subject')
+        message = data_json.get('message')
+
+        row = Messages(username=user_name, email=email, subject=subject, message=message, date=datetime.now(UTC))
+
+        connector.session.add(row)
+
+        connector.session.commit()
+
+        return make_response(jsonify({
+        'success': True,
+        'message': 'Success to send message.'
+    }))
+    except Exception as e:
+        return make_response(jsonify({ 'success': False, 'message': str(e) })), 500
 
 @app.route('/api/get_response', methods=['POST'])
 def get_response():
