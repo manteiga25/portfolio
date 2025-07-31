@@ -7,6 +7,8 @@ from ast import literal_eval
 from os import environ
 from static.data import data
 from dotenv import load_dotenv
+from email_service import Email
+from threading import Thread
 
 load_dotenv()
 
@@ -42,19 +44,17 @@ def index():
 @app.route('/accept_cookies', methods=['POST'])
 def accept_cookies():
     resp = make_response(jsonify({
-        'success': True,
-        'message': 'Cookies aceitos com sucesso'
+        'success': True
     }))
-    resp.set_cookie('user_consented', 'true', max_age=365 * 24 * 60 * 60, httponly=True) # Válido por 1 ano
+    resp.set_cookie('user_consented', 'true', max_age=30 * 24 * 60 * 60, httponly=True) # Válido por 1 ano
     return resp
 
 @app.route('/reject_cookies', methods=['POST'])
 def reject_cookies():
     resp = make_response(jsonify({
-        'success': True,
-        'message': 'Cookies aceitos com sucesso'
+        'success': True
     }))
-    resp.set_cookie('user_consented', 'false', max_age=365 * 24 * 60 * 60, httponly=True)
+    resp.set_cookie('user_consented', 'false', max_age=30 * 24 * 60 * 60, httponly=True)
     return resp
 
 
@@ -65,7 +65,7 @@ def to_english():
     resp = make_response(redirect(url_for('index')))  # ajuste para sua rota principal
 
     if cookie_status == 'true':
-        resp.set_cookie('language', 'en', max_age=365 * 24 * 60 * 60, httponly=True)
+        resp.set_cookie('language', 'en', max_age=30 * 24 * 60 * 60, httponly=True)
 
     return resp
 
@@ -77,7 +77,7 @@ def to_pt():
     resp = make_response(redirect(url_for('index')))  # ajuste para sua rota principal
 
     if cookie_status == 'true':
-        resp.set_cookie('language', 'pt', max_age=365 * 24 * 60 * 60, httponly=True)
+        resp.set_cookie('language', 'pt', max_age=30 * 24 * 60 * 60, httponly=True)
 
     return resp
 
@@ -90,15 +90,19 @@ def send_message():
         subject = data_json.get('subject')
         message = data_json.get('message')
 
+        language = request.cookies.get('language', 'en')
+
         row = Messages(username=user_name, email=email, subject=subject, message=message, date=datetime.now(UTC))
 
         connector.session.add(row)
 
         connector.session.commit()
 
+        Thread(target=lambda: Email.send_email(email, language == 'en'), daemon=True).start()
+
         return make_response(jsonify({
         'success': True,
-        'message': 'Success to send message.'
+        'message': 'Success to send message.\nAn email has been sent.' if language == 'en' else 'Sucesso a enviar a mensagem.\nUm email será enviado para si.'
     }))
     except Exception as e:
         return make_response(jsonify({ 'success': False, 'message': str(e) })), 500
@@ -112,8 +116,6 @@ def get_response():
         user_time = data.get('date', '')
 
         assistant_response = Assistant.answer_question(user_message)
-
-        print(assistant_response)
 
         if assistant_response is None:
             assistant_response = "I could to respond this question."
@@ -135,7 +137,7 @@ def change_cookie(resp, cookie, value):
     else:
         data_list = [value]
 
-    resp.set_cookie(cookie, str(data_list),  max_age=365 * 24 * 60 * 60, httponly=True)
+    resp.set_cookie(cookie, str(data_list),  max_age=30 * 24 * 60 * 60, httponly=True)
 
 def request_messages():
     message_list = []
