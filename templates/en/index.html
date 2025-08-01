@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mykhailo - Full Stack Developer</title>
+    <title>Alexandre - Full Stack Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/nav-style.css') }}">
@@ -55,7 +55,6 @@
     <header>
 
         <button id="chat-toggle" class="floating-chat-button" onclick="toggleChat()">
-  💬 <!-- Você pode usar um ícone SVG ou uma biblioteca de ícones aqui -->
 </button>
 
 <!-- Janela do Chat -->
@@ -72,13 +71,6 @@
 
 
     </div>
-    <!-- Exemplo de mensagem enviada -->
-    <!--
-    <div class="message sent">
-      <p>Olá, tenho uma dúvida sobre o seu portfólio.</p>
-      <span class="timestamp">Agora</span>
-    </div>
-    -->
   </div>
   <div class="chat-input-area">
     <input type="text" id="chat-input" placeholder="Digite sua mensagem..." />
@@ -86,8 +78,6 @@
     <button id="send-message" class="send-button" onclick="sendMessage()">Send</button>
   </div>
 </div>
-
-
 
     <div class="container">
         <div class="hero-flex">
@@ -100,13 +90,17 @@
                     that solve real-world problems. From advanced IDEs to AI-powered assistants, 
                     I'm passionate about developing cutting-edge software that makes a difference.
                 </p>
+                <div style="padding-top: 20px;">
+                    <a href="https://www.linkedin.com/in/alexandre-mykailo-aa4998344" class="button-link" target="_blank">Linkedin</a>
+                    <a style="margin-left: 10px;" class="button-link" target="_blank" href="https://github.com/manteiga25">Github</a>
+                </div>
             </div>
             
             <div class="model">
                 
                 <spline-viewer
                     loading-anim-type="spinner-small-dark" 
-                    url="https://prod.spline.design/wJHo2FS0BwCJhvoe/scene.splinecode"> <!-- style="height: 100%; width: 100%; " -->
+                    url="https://prod.spline.design/wJHo2FS0BwCJhvoe/scene.splinecode">
                 </spline-viewer>
             </div>
         </div>
@@ -226,7 +220,7 @@
                         <span class="tech-tag">Google API</span>
                     </div>
                     <p class="project-description">Full-stack web application for language translation featuring a clean, responsive interface, database storage for translation history, and Google Translator API integration for accurate multi-language support.</p>
-                    <a href="#" target="_blank" class="github-link">
+                    <a href="https://github.com/manteiga25/translator_app" target="_blank" class="github-link">
                         <svg class="github-icon" viewBox="0 0 16 16">
                             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                         </svg>
@@ -298,7 +292,7 @@
                 </div>
 
                 <div class="project-card animate-on-scroll">
-                    <h3 class="project-title">Portfólio</h3>
+                    <h3 class="project-title">Portfolio</h3>
                     <div class="project-tech">
                         <span class="tech-tag">HTML</span>
                         <span class="tech-tag">CSS</span>
@@ -308,8 +302,8 @@
                         <span class="tech-tag">Flask</span>
                         <span class="tech-tag">SQLite</span>
                     </div>
-                    <p class="project-description">My portfolio developed with html css, js and python flask on back-end and pseudo AI trained about my data.</p>
-                    <a href="#" target="_blank" class="github-link">
+                    <p class="project-description">My portfolio developed with html css, js and python flask on the back-end, and pseudo AI trained about my data.</p>
+                    <a href="https://github.com/manteiga25/portfolio" target="_blank" class="github-link">
                         <svg class="github-icon" viewBox="0 0 16 16">
                             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                         </svg>
@@ -344,7 +338,7 @@
                     <span class="experience-skill">Email Automation</span>
                 </div>
             </div>
-            <a href="https://www.softvoice.pt/about">
+            <a href="https://www.softvoice.pt/about" target="_blank">
                 <img class="image-skill" src="https://tse3.mm.bing.net/th/id/OIP.9NF5I7z00lS1-VqQXUmntQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3">
             </a>
             </div>
@@ -356,9 +350,9 @@
         <h2 class="section-title animate-on-scroll">Education</h2>
         <div class="education-grid"> <!-- New wrapper div -->
             <div class="education-card animate-on-scroll">
-                <h3 class="education-title">Informatic Technician - System</h3>
+                <h3 class="education-title">Informatic Technician—System</h3>
                 <p class="education-school">Escola Básica e Secundária de Alvide</p>
-                <p class="education-type">Tecnico de informática - Sistemas: Certification</p>
+                <p class="education-type">Técnico de informática - Sistemas: Certification</p>
                 <!-- Collapse widget for books -->
                 <div class="collapse-widget">
                     <button type="button" class="collapse-btn" id="rating-btn" data-target="books-content">
@@ -371,16 +365,16 @@
                                 <p class="item-title">Programming C/C++, Python, Java: 20-20</p>
                             </div>
                             <div class="item">
-                                <p class="item-title">Information system: 19-20</p>
+                                <p class="item-title">Information system: 19–20</p>
                             </div>
                             <div class="item">
-                                <p class="item-title">Communication networks: 18-20</p>
+                                <p class="item-title">Communication networks: 18–20</p>
                             </div>
                             <div class="item">
-                                <p class="item-title">Application informatic: 17-20</p>
+                                <p class="item-title">Application informatic: 17–20</p>
                             </div>
                             <div class="item">
-                                <p class="item-title">Technologi of information and comunication: 17-20</p>
+                                <p class="item-title">Technology of information and communication: 17–20</p>
                             </div>
                             <div class="item">
                                 <p class="item-title">Final project (SQLIDE): 18-20</p>
@@ -394,8 +388,7 @@
                 <p class="education-school">Escola Básica e Secundária de Alvide</p>
                 <p class="education-type">Presented proposals during school sessions and contributed to vote-based selection for funding allocation.</p>
             </div>
-            
-           <!-- <div><button type="button" class="btn">See more</button></div> -->
+
         </div> <!-- Close .education-grid -->
 
 <!-- Collapse widget for books -->
@@ -537,8 +530,8 @@
             
             <div class="social-center">
                 <div class="social-links">
-                    <a href="https://github.com/manteiga25"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/manteiga25" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/alexandre-mykailo-aa4998344" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <p class="copyright">&copy; 2025 Alexandre. All rights reserved.</p>
             </div>
